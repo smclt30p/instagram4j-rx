@@ -55,7 +55,7 @@ public class RXIGClient implements IRXIGClient {
         }));
     }
 
-    public Observable<IRXIGClient> simulatedLogin(String username, String password) {
+    public static Observable<IRXIGClient> simulatedLogin(String username, String password) {
         return Observable.create((emitter -> {
             try {
                 IGClient client = IGClient.builder()
