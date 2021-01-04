@@ -34,23 +34,10 @@ public class RXIGClient implements IRXIGClient {
         this.client = client;
     }
 
-    public static Observable<IGClient> build(IGClient client) {
-        return Observable.create((emitter -> {
-            emitter.onNext(client);
-            emitter.onComplete();
-        }));
-    }
-
-    public static Observable<IRXIGClient> build(IGClient.Builder builder) {
-        return Observable.create((emitter -> {
-            try {
-                IGClient client = builder.build();
-                emitter.onNext(new RXIGClient(client));
-                emitter.onComplete();
-            } catch (Exception e) {
-                emitter.onError(e);
-            }
-        }));
+    public static IRXIGClient build(IGClient client) {
+        if (!client.isLoggedIn())
+            throw new RuntimeException("Restored IGClient object that is not logged in!");
+        return new RXIGClient(client);
     }
 
     public static Observable<IRXIGClient> login(String username, String password) {
