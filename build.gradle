@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group 'ba.ogalic.instagram4j'
+version '1.0'
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://jitpack.io'
+    }
+}
+
+dependencies {
+
+    implementation 'com.github.instagram4j:instagram4j:master-SNAPSHOT'
+    implementation "io.reactivex.rxjava3:rxjava:3.0.9"
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+test {
+    useJUnitPlatform()
+}
