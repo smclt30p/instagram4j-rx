@@ -34,6 +34,17 @@ public class RXIGClient implements IRXIGClient {
         this.client = client;
     }
 
+    public static Observable<IRXIGClient> build(IGClient.Builder builder) {
+        return Observable.create((emitter -> {
+            try {
+                IGClient client = builder.build();
+                emitter.onNext(new RXIGClient(client));
+            } catch (Exception e) {
+                emitter.onError(e);
+            }
+        }));
+    }
+
     public static Observable<IRXIGClient> login(String username, String password) {
         return Observable.create((emitter -> {
             try {
