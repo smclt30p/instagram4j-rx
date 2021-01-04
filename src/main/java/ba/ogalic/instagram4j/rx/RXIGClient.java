@@ -34,11 +34,19 @@ public class RXIGClient implements IRXIGClient {
         this.client = client;
     }
 
+    public static Observable<IGClient> build(IGClient client) {
+        return Observable.create((emitter -> {
+            emitter.onNext(client);
+            emitter.onComplete();
+        }));
+    }
+
     public static Observable<IRXIGClient> build(IGClient.Builder builder) {
         return Observable.create((emitter -> {
             try {
                 IGClient client = builder.build();
                 emitter.onNext(new RXIGClient(client));
+                emitter.onComplete();
             } catch (Exception e) {
                 emitter.onError(e);
             }
@@ -53,6 +61,7 @@ public class RXIGClient implements IRXIGClient {
                                           .password(password)
                                           .login();
                 emitter.onNext(new RXIGClient(client));
+                emitter.onComplete();
             } catch (IGLoginException e) {
                 emitter.onError(e);
             }
@@ -67,6 +76,7 @@ public class RXIGClient implements IRXIGClient {
                                           .password(password)
                                           .simulatedLogin();
                 emitter.onNext(new RXIGClient(client));
+                emitter.onComplete();
             } catch (IGLoginException e) {
                 emitter.onError(e);
             }

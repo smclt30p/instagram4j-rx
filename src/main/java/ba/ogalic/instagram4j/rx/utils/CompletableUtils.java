@@ -15,6 +15,7 @@ public class CompletableUtils {
             try {
                 CompletableFuture<T> ret = callable.call();
                 emitter.onNext(ret.get());
+                emitter.onComplete();
             } catch (Exception e) {
                 emitter.onError(e);
             }
