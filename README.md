@@ -22,7 +22,7 @@ RxJava wrapper for Java wrapper using OkHttpClient for Instagram's private api (
 ```java
 dependencies {
     implementation 'com.github.instagram4j:instagram4j:2.0.2'
-    implementation 'com.github.smclt30p.instagram4j-rx:1.0'
+    implementation 'com.github.smclt30p.instagram4j-rx:1.2'
     implementation "io.reactivex.rxjava3:rxjava:3.0.9"
 }
 ```
