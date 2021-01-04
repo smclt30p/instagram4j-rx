@@ -115,4 +115,8 @@ public class RXIGClient implements IRXIGClient {
         return new StatusActionsImpl(client);
     }
 
+    public IGClient getClient() {
+        return client;
+    }
+
 }
