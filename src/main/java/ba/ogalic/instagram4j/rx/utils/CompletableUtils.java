@@ -14,7 +14,7 @@ public class CompletableUtils {
         return Observable.create((emitter -> {
             try {
                 CompletableFuture<T> ret = callable.call();
-                emitter.onNext(ret.get());
+                emitter.onNext(ret.join());
                 emitter.onComplete();
             } catch (Exception e) {
                 emitter.onError(e);
